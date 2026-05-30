@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aishwarya & Madan — Wedding Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Cinzel:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #f0d080;
+    --gold-pale: #fdf3d7;
+    --maroon: #7b1c2e;
+    --maroon-light: #a3263d;
+    --cream: #fdf8ee;
+    --text-dark: #2a1a10;
+    --text-mid: #5a3825;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #1a0a0e 0%, #3d0b1a 50%, #1a0a0e 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    text-align: center; padding: 2rem;
+  }
+
+  /* Decorative corner SVG overlays */
+  .corner { position: absolute; width: 220px; opacity: .65; pointer-events: none; }
+  .corner.tl { top: 0; left: 0; transform: rotate(0deg); }
+  .corner.tr { top: 0; right: 0; transform: rotate(90deg); }
+  .corner.bl { bottom: 0; left: 0; transform: rotate(270deg); }
+  .corner.br { bottom: 0; right: 0; transform: rotate(180deg); }
+
+  .hero-tag {
+    font-family: 'Cinzel', serif;
+    font-size: .75rem; letter-spacing: .35em;
+    color: var(--gold-light); text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    animation: fadeUp .8s ease both;
+  }
+  .hero-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    color: var(--gold-light);
+    line-height: 1.05;
+    text-shadow: 0 0 60px rgba(201,168,76,.35);
+    animation: fadeUp .9s .15s ease both;
+  }
+  .hero-ampersand { color: #fff; font-size: clamp(2rem, 6vw, 4rem); display: block; }
+  .hero-date {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(.85rem, 2.5vw, 1.1rem);
+    color: var(--gold);
+    letter-spacing: .25em;
+    margin-top: 1.4rem;
+    animation: fadeUp 1s .3s ease both;
+  }
+  .hero-divider {
+    width: 160px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1.5rem auto;
+    animation: fadeUp 1s .4s ease both;
+  }
+  .hero-location {
+    font-size: 1rem; color: #e8cfa0; letter-spacing: .12em;
+    animation: fadeUp 1s .5s ease both;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 2rem;
+    display: flex; flex-direction: column; align-items: center; gap: .4rem;
+    color: var(--gold); opacity: .6; font-size: .75rem; letter-spacing: .15em;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint svg { width: 18px; height: 18px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(8px); }
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 5rem 1.5rem;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: .7rem; letter-spacing: .4em;
+    color: var(--maroon); text-transform: uppercase;
+    margin-bottom: .6rem;
+  }
+  .section-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    color: var(--maroon);
+    margin-bottom: 1.2rem;
+  }
+  .ornament {
+    display: flex; align-items: center; justify-content: center; gap: .8rem;
+    margin: .8rem auto 1.8rem;
+  }
+  .ornament span { display: block; height: 1px; width: 60px; background: var(--gold); }
+  .ornament svg { color: var(--gold); width: 18px; height: 18px; }
+
+  /* ── COUPLE BIO ── */
+  #couple { background: var(--cream); }
+  .couple-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 640px) { .couple-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .bio-card {
+    background: #fff;
+    border: 1px solid #ebd9a8;
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 8px 40px rgba(123,28,46,.06);
+    transition: transform .3s;
+  }
+  .bio-card:hover { transform: translateY(-4px); }
+  .bio-avatar {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    margin: 0 auto 1rem;
+    object-fit: cover;
+    background: linear-gradient(135deg, #f0d080, #c9a84c);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem; color: #fff;
+  }
+  .bio-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem; color: var(--maroon); margin-bottom: .4rem;
+  }
+  .bio-parents { font-size: .9rem; color: #888; font-style: italic; line-height: 1.6; }
+
+  /* ── COUNTDOWN ── */
+  #countdown-section { background: linear-gradient(135deg, #fdf3d7, #fff8e8); }
+  .countdown-grid {
+    display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .cd-box {
+    background: var(--maroon);
+    color: #fff; border-radius: 6px;
+    width: 90px; padding: 1rem .5rem;
+    box-shadow: 0 6px 25px rgba(123,28,46,.25);
+  }
+  .cd-num {
+    font-family: 'Cinzel', serif;
+    font-size: 2.4rem; font-weight: 600;
+    color: var(--gold-light); display: block; line-height: 1;
+  }
+  .cd-label { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; opacity: .75; margin-top: .3rem; }
+
+  /* ── EVENTS ── */
+  #events { background: var(--cream); }
+  .events-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .event-card {
+    background: #fff;
+    border-left: 4px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 1.5rem 2rem;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0,0,0,.05);
+    display: grid; grid-template-columns: auto 1fr; gap: 1.2rem; align-items: center;
+  }
+  .event-icon { font-size: 2rem; }
+  .event-title { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--maroon); margin-bottom: .25rem; }
+  .event-detail { font-size: .9rem; color: #666; line-height: 1.7; }
+
+  /* ── VENUE MAP ── */
+  #venue { background: linear-gradient(135deg, #fdf3d7, #fff8e8); }
+  .map-embed {
+    margin: 2rem auto 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,.12);
+    max-width: 700px;
+    border: 2px solid var(--gold);
+  }
+  .map-embed iframe { width: 100%; height: 320px; border: 0; display: block; }
+
+  /* ── FALLING FLOWERS ── */
+  .petal {
+    position: fixed;
+    top: -40px;
+    font-size: 1.4rem;
+    animation: fall linear infinite;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(0) rotate(0deg) scale(1);   opacity: 1; }
+    80%  { opacity: .8; }
+    100% { transform: translateY(105vh) rotate(360deg) scale(.6); opacity: 0; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #100507;
+    color: #a0845a;
+    text-align: center; padding: 2rem 1rem;
+    font-size: .85rem; letter-spacing: .06em;
+  }
+  footer .footer-names { font-family: 'Great Vibes', cursive; font-size: 2rem; color: var(--gold); margin-bottom: .5rem; }
+
+  /* ── FLORAL SVG ── */
+  .floral-sep { margin: 3rem auto; display: block; opacity: .4; }
+</style>
+</head>
+<body>
+
+<!-- ╔══════════════ HERO ══════════════╗ -->
+<section id="hero">
+  <!-- Corner flourishes -->
+  <svg class="corner tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 10 Q60 10 60 60 Q60 10 110 10" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <path d="M10 10 Q10 60 60 60 Q10 60 10 110" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <circle cx="60" cy="60" r="4" fill="#c9a84c" opacity=".6"/>
+    <circle cx="10" cy="10" r="3" fill="#c9a84c" opacity=".5"/>
+    <path d="M25 10 Q25 25 10 25" stroke="#c9a84c" stroke-width=".8" fill="none" opacity=".5"/>
+    <path d="M40 10 Q40 40 10 40" stroke="#c9a84c" stroke-width=".8" fill="none" opacity=".4"/>
+    <path d="M10 25 Q25 25 25 10" stroke="#c9a84c" stroke-width=".6" fill="none" opacity=".3"/>
+    <!-- petals -->
+    <ellipse cx="60" cy="35" rx="8" ry="14" fill="#c9a84c" opacity=".15" transform="rotate(-20 60 35)"/>
+    <ellipse cx="35" cy="60" rx="8" ry="14" fill="#c9a84c" opacity=".15" transform="rotate(70 35 60)"/>
+    <ellipse cx="75" cy="50" rx="6" ry="11" fill="#c9a84c" opacity=".12" transform="rotate(40 75 50)"/>
+  </svg>
+  <svg class="corner tr" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 10 Q60 10 60 60 Q60 10 110 10" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <path d="M10 10 Q10 60 60 60 Q10 60 10 110" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <circle cx="60" cy="60" r="4" fill="#c9a84c" opacity=".6"/>
+    <ellipse cx="60" cy="35" rx="8" ry="14" fill="#c9a84c" opacity=".15" transform="rotate(-20 60 35)"/>
+    <ellipse cx="35" cy="60" rx="8" ry="14" fill="#c9a84c" opacity=".15" transform="rotate(70 35 60)"/>
+  </svg>
+  <svg class="corner bl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 10 Q60 10 60 60 Q60 10 110 10" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <path d="M10 10 Q10 60 60 60 Q10 60 10 110" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <circle cx="60" cy="60" r="4" fill="#c9a84c" opacity=".6"/>
+    <ellipse cx="60" cy="35" rx="8" ry="14" fill="#c9a84c" opacity=".15" transform="rotate(-20 60 35)"/>
+  </svg>
+  <svg class="corner br" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 10 Q60 10 60 60 Q60 10 110 10" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <path d="M10 10 Q10 60 60 60 Q10 60 10 110" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <circle cx="60" cy="60" r="4" fill="#c9a84c" opacity=".6"/>
+    <ellipse cx="35" cy="60" rx="8" ry="14" fill="#c9a84c" opacity=".15" transform="rotate(70 35 60)"/>
+  </svg>
+
+  <p class="hero-tag" style="position:absolute; top:1.8rem; font-size:.6rem; letter-spacing:.25em; opacity:.9">‖ Sri Anjaneya Swamy Prasanna ‖</p>
+  <p class="hero-tag">You are invited to the joyous celebration of</p>
+  <div class="hero-names">
+    Aishwarya
+    <span class="hero-ampersand">&</span>
+    Madan
+  </div>
+  <div class="hero-divider"></div>
+  <p class="hero-tag" style="margin-bottom:1rem">Together with their families</p>
+  <p class="hero-date">1ST & 2ND JULY 2026</p>
+  <p class="hero-location" style="margin-top:.6rem">Shiva Shakthi Convention Hall, Basavanagudi, Bangalore</p>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ╔══════════════ COUPLE ══════════════╗ -->
+<section id="couple">
+  <div class="section">
+    <p class="section-label">The Happy Couple</p>
+    <h2 class="section-title">Two souls, one destiny</h2>
+    <div class="ornament">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+      <span></span>
+    </div>
+    <div class="couple-grid">
+      <div class="bio-card">
+        <div class="bio-avatar">A</div>
+        <div class="bio-name">Aishwarya</div>
+        <p class="bio-parents">Beloved daughter of<br/><strong>Smt. Sudha K.R</strong> & <strong>Sri. Ravi K.S</strong></p>
+      </div>
+      <div class="bio-card">
+        <div class="bio-avatar" style="background: linear-gradient(135deg, #a0524a, #7b1c2e)">M</div>
+        <div class="bio-name">Madan</div>
+        <p class="bio-parents">Beloved son of<br/><strong>Smt. G. Suma</strong> & <strong>Sri Late. S. Krishna kumar</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════ COUNTDOWN ══════════════╗ -->
+<section id="countdown-section">
+  <div class="section">
+    <p class="section-label">Counting Down To</p>
+    <h2 class="section-title">The Big Day</h2>
+    <div class="ornament">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      <span></span>
+    </div>
+    <div class="countdown-grid">
+      <div class="cd-box"><span class="cd-num" id="cd-days">--</span><div class="cd-label">Days</div></div>
+      <div class="cd-box"><span class="cd-num" id="cd-hours">--</span><div class="cd-label">Hours</div></div>
+      <div class="cd-box"><span class="cd-num" id="cd-mins">--</span><div class="cd-label">Minutes</div></div>
+      <div class="cd-box"><span class="cd-num" id="cd-secs">--</span><div class="cd-label">Seconds</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════ EVENTS ══════════════╗ -->
+<section id="events">
+  <div class="section">
+    <p class="section-label">Save the Dates</p>
+    <h2 class="section-title">Wedding Ceremonies</h2>
+    <div class="ornament">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+      <span></span>
+    </div>
+    <div class="events-list">
+      <div class="event-card">
+        <div class="event-icon">🍽️</div>
+        <div>
+          <div class="event-title">Wedding Reception</div>
+          <div class="event-detail">🗓️ Wednesday, 1st July 2026 &nbsp;|&nbsp; ⏰ 6:30 PM onwards<br/>📍 Shiva Shakthi Convention Hall, Basavanagudi, Bangalore</div>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-icon">🌸</div>
+        <div>
+          <div class="event-title">Muhurtham</div>
+          <div class="event-detail">🗓️ Thursday, 2nd July 2026 &nbsp;|&nbsp; ⏰ 11:25 AM<br/>📍 Shiva Shakthi Convention Hall, Basavanagudi, Bangalore</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════ VENUE ══════════════╗ -->
+<section id="venue">
+  <div class="section">
+    <h2 class="section-title">Venue & Location</h2>
+    <div class="ornament">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+      <span></span>
+    </div>
+    <p style="color:#666; margin-bottom: 1.5rem;">Shiva Shakthi Convention Hall, Basavanagudi, Bangalore</p>
+    <a href="https://share.google/tBI8Km3cJwSBrZhqf" target="_blank" rel="noopener" style="
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .85rem 2rem;
+      background: linear-gradient(135deg, var(--gold), #a8782a);
+      color: #fff; text-decoration: none;
+      font-family: 'Cinzel', serif; font-size: .8rem;
+      letter-spacing: .18em; text-transform: uppercase;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(201,168,76,.3);
+      transition: opacity .3s, transform .2s;
+      " onmouseover="this.style.opacity='.85';this.style.transform='translateY(-2px)'"
+         onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+      Open in Google Maps
+    </a>
+  </div>
+</section>
+
+<!-- ╔══════════════ FOOTER ══════════════╗ -->
+<footer>
+  <div class="footer-names" style="font-family:'Cormorant Garamond',serif; font-size:.85rem; letter-spacing:.2em; color:#a0845a; margin-bottom:.3rem">With love</div>
+  <div class="footer-names">Aishwarya & Madan</div>
+  <p>1st & 2nd July 2026 &nbsp;·&nbsp; Shiva Shakthi Convention Hall, Basavanagudi, Bangalore</p>
+</footer>
+
+<script>
+  // ── Countdown ──
+  const weddingDate = new Date('2026-07-01T11:00:00+05:30').getTime();
+  function updateCountdown() {
+    const now = Date.now();
+    const diff = weddingDate - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent  = '00';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent  = '00';
+      document.getElementById('cd-secs').textContent  = '00';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── Falling flowers ──
+  const petals = ['🌸','🌺','🌷'];
+  function spawnPetal() {
+    const el = document.createElement('div');
+    el.className = 'petal';
+    el.textContent = petals[Math.floor(Math.random() * petals.length)];
+    const size = .8 + Math.random() * 1.2;
+    const duration = 4 + Math.random() * 6;
+    const delay = Math.random() * 2;
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = size + 'rem';
+    el.style.animationDuration = duration + 's';
+    el.style.animationDelay = delay + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), (duration + delay) * 1000);
+  }
+  // spawn a petal every 900ms
+  setInterval(spawnPetal, 900);
+  // seed a few immediately on load
+  for (let i = 0; i < 4; i++) spawnPetal();
+
+  // ── Scroll-reveal (IntersectionObserver) ──
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.bio-card, .event-card, .cd-box').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
